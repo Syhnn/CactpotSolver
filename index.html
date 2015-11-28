@@ -14,25 +14,25 @@
       <form>
         <table>
           <tr>
-            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+            <td>x</td><td>x</td><td>x</td><td>x</td><td>x</td>
           </tr>
           <tr>
-            <td>&nbsp;</td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
+            <td>x</td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(0);"></td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(1);"></td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(2);"></td>
           </tr>
           <tr>
-            <td>&nbsp;</td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
+            <td>x</td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(3);"></td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(4);"></td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(5);"></td>
           </tr>
           <tr>
-            <td>&nbsp;</td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
-            <td><input type="number" name="test" value="" min="1" max = "9"></td>
+            <td>x</td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(6);"></td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(7);"></td>
+            <td><input type="number" class="num" name="test" value="" min="1" max = "9" onchange="check(8);"></td>
           </tr>
         </table>
       </form>
@@ -41,5 +41,52 @@
     <footer id="footer">
       FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
     </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      var values = [];
+
+      function check(id)
+      {
+        var numbers = $(".num");
+        var count = 0;
+
+        values[id] = numbers[id].value;
+
+        var test = nodouble();
+        console.log(test);
+
+        $(".num").each(function( index ) {
+          if (this.value) count++;
+        });
+
+        if (count == 4 && test) solve();
+
+        console.log("count: " + count);
+        console.log("solve: " + test);
+      }
+
+      function solve()
+      {
+        var numbers = $(".num");
+        var l1 = [numbers[0].value, numbers[1].value, numbers[2].value];
+        console.log(l1);
+      }
+
+      function nodouble()
+      {
+        var o = values.slice();
+console.log(o);
+        o.sort();
+
+        for (var i = 0; i < o.length -1; i++)
+        {
+          console.log(i+": "+o[i]+" "+i+1+": "+o[i+1]);
+          if (o[i] == o[i+1]) return false;
+        }
+
+        return true;
+      }
+    </script>
   </body>
 </html>
